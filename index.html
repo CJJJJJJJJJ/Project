@@ -1,18 +1,134 @@
-<html>
-  <head>
-    <!-- Pull the engine from the Quintus CDN or load it locally -->
-    <!-- (use quintus-all.min.js for production) -->
-    <script src='http://cdn.html5quintus.com/v0.2.0/quintus-all.js'></script>
-    <script type="text/javascript">
-    alert('JJ sucks');
-    </script>
-  </head>
-   <body>
-     <script>
-     
-      // Now set up your game (most games will load a separate .js file)
-      var Q = Quintus()                          // Create a new engine instance
-              .include("Sprites, Scenes, Input, 2D, Touch, UI") // Load any needed modules
-              .setup()                           // Add a canvas element onto the page
-              .controls()                        // Add in default controls (keyboard, buttons)
-              .touch();                          // Add in touch support (for the UI)
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<title>Test</title>
+	<meta charset="UTF-8" />
+	<meta name="google" value="notranslate" />
+	<meta http-equiv="Content-Language" content="en" />
+	<style>
+		body {
+			background: url('Untitled-3.gif');
+			color: #fff;
+		}
+
+		.corner-random-numbers {
+			display: block;
+			position: absolute;
+			font-size: 60px;			
+		}
+
+		#tlcorner {
+			left: 0;
+			top: 0;
+			color: #C7914B;
+		}
+
+		#trcorner {
+			right: 0;
+			top: 0;
+			color: #4B58C8;
+		}
+
+		#blcorner {
+			left: 0;
+			bottom: 0;
+			color: #4B58C8;
+		}
+
+		#brcorner {
+			right: 48px;
+			bottom: 0;
+			color: #4B58C8;
+		}
+
+		.second-bg {
+			background: url('Untitled-3.gif');
+		}
+
+		#box1 {	
+			display: none;
+			color: #fff;
+			width: 350px;
+			height: 200px;
+			position: absolute;
+			top : 50%;
+			left: 50%;
+			margin-left: -175px;
+			font-weight: bold;	
+			font-size: 24px;
+			text-shadow: 2px 2px 6px #000;
+		}
+
+		input[type="button"]:hover {
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+		
+		<div id="tlcorner" class="corner-random-numbers">&nbsp;</div>
+		<div id="trcorner" class="corner-random-numbers">&nbsp;</div>
+		<div id="blcorner" class="corner-random-numbers">&nbsp;</div>
+		<div id="brcorner" class="corner-random-numbers">&nbsp;</div>
+		<div id="box1">Press Any Button To Start Game</div>
+
+	
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript">
+
+	// function ClickEvent(event) {
+	// 	alert(document.getElementById('FirstName').value);
+	// }
+
+	// document.getElementById("box1").onclick = ClickEvent;
+
+	$(document).ready(function() {
+
+	    // run the fade() function every 2 seconds
+	    setInterval(function(){
+	        fade();
+	    },800);
+
+	    setInterval(function() {
+	        $('#brcorner').text(function() {
+	        	return Math.ceil(Math.random()*1000);
+	        })
+	    }, 150);
+	    setInterval(function() {
+	         $('#tlcorner').text(function() {
+	        	return Math.ceil(Math.random()*100);
+	        })
+	     }, 100);
+	   
+
+
+	    function fade() {
+			$('#box1').fadeToggle(500);
+		}
+
+		$('body').on('keypress', function(event) {
+			if ( !$(this).hasClass('second-bg') ) {
+				$(this).addClass('second-bg');
+				$('#box1').remove();
+				$(this).unbind('keyoress');
+
+			}
+		});
+
+	});
+
+
+
+	// function foo(e){
+	// 	var o = document.getElementById(this.id);
+	// 	o.style.backgroundColor = "#23bbcc";
+	// }
+
+	// document.getElementById("box1").onclick = foo;
+
+	</script>
+</body>
+</html>
